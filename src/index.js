@@ -72,21 +72,23 @@ var wrapDate = function (date) {
 
 /**
  * 解析 date
- * @param date {Date|String|Number} date 信息
+ * @param date {Date|String|Number|Array} date 信息
  * @returns {Date}
  */
 var parse = exports.parse = function (date) {
     if (typeis.Date(date)) {
         return wrapDate(date);
     }
-
+    
     if (typeis.Array(date)) {
         switch (date.length) {
             case 0:
                 return new Date();
 
             case 1:
-                return wrapDate(new Date(date[0]));
+                // new Date(2016) => 1970
+                // new Date(2016, 0) => 2016
+                return wrapDate(new Date(date[0], 0));
 
             case 2:
                 return wrapDate(new Date(date[0], date[1]));
