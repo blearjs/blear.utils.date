@@ -65,6 +65,8 @@ describe('index.js', function () {
         expect(date.getWeeksInMonth(2016, 3, 11)).toEqual(3);
         expect(date.getWeeksInMonth(2016, 0, 1, 3)).toEqual(1);
         expect(date.getWeeksInMonth(2016, 3, 11, 3)).toEqual(2);
+        expect(date.getWeeksInMonth(2016, 9, 30, 1)).toEqual(5);
+        expect(date.getWeeksInMonth(2016, 9, 31, 1)).toEqual(6);
     });
 
     it('.from', function () {

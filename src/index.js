@@ -79,7 +79,7 @@ var parse = exports.parse = function (date) {
     if (typeis.Date(date)) {
         return wrapDate(date);
     }
-    
+
     if (typeis.Array(date)) {
         switch (date.length) {
             case 0:
@@ -316,7 +316,7 @@ exports.format = function (format, date) {
  * date.isLeapYear(2014);
  * // => false
  */
-exports.isLeapYear = function (year) {
+var isLeapYear = exports.isLeapYear = function (year) {
     return (year % 4 === 0 && (year % 100 !== 0 || year % 400 === 0));
 };
 
@@ -335,7 +335,19 @@ exports.isLeapYear = function (year) {
 exports.getDaysInMonth = function (year, month) {
     month = new Date(year, month).getMonth();
 
-    return month === 1 ? (exports.isLeapYear(year) ? 29 : 28) : monthDates[month];
+    return month === 1 ? (isLeapYear(year) ? 29 : 28) : monthDates[month];
+};
+
+
+// 计算开始日期
+var calStartDate = function (d) {
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0);
+};
+
+// 计算结束日期
+var calEndDate = function (d) {
+    var tmpDate = new Date(d.getFullYear(), d.getMonth(), d.getDate() + 1, 0, 0, 0, 0);
+    return new Date(tmpDate.getTime() - 1);
 };
 
 
@@ -347,8 +359,8 @@ exports.getDaysInMonth = function (year, month) {
  * @returns {Number}
  */
 exports.getDaysInYear = function (year, month, date) {
-    var t1 = new Date(year, 0, 1);
-    var t2 = new Date(year, month, date);
+    var t1 = calStartDate(new Date(year, 0, 1));
+    var t2 = calEndDate(new Date(year, month, date));
     // 超前 1 毫秒，保证同一天的两个时间不同
     var dt = t2.getTime() - t1.getTime() + 1;
 
@@ -370,15 +382,15 @@ var getWeeksInRange = function (type, year, month, date, weekStartDay) {
     var t1;
     switch (type) {
         case 1:
-            t1 = new Date(year, 0, 1);
+            t1 = calStartDate(new Date(year, 0, 1));
             break;
 
         case 2:
-            t1 = new Date(year, month, 1);
+            t1 = calStartDate(new Date(year, month, 1));
             break;
     }
 
-    var t2 = new Date(year, month, date);
+    var t2 = calEndDate(new Date(year, month, date));
     // 第一周的填充
     var firstWeekPadding = t1.getDay() - weekStartDay;
     var dt = t2.getTime() - t1.getTime() + firstWeekPadding * DAY_TIME;
@@ -410,7 +422,7 @@ exports.getWeeksInYear = function (year, month, date, weekStartDay) {
  * @param {Number} month 月
  * @param {Number} date 日
  * @param {Number} [weekStartDay=0] 一周的开始是星期几，默认为周日
- * @returns {number}
+ * @returns {number} 第一周值为 1
  *
  * @example
  * // 判断2014年10月24日是当月的第几周
