@@ -1,7 +1,11 @@
+/**
+ * 日期模块
+ * @author ydr.me
+ * @create 2016年5月18日13:45:44
+ * @update 2016年11月26日14:29:44
+ */
+
 'use strict';
-
-require('blear.polyfills.date');
-
 
 var object = require('blear.utils.object');
 var array = require('blear.utils.array');
