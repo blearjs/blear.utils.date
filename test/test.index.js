@@ -20,6 +20,12 @@ describe('index.js', function () {
         expect(date.id(d)).toEqual(20160101);
     });
 
+    it('.fromId', function () {
+        var d = date.fromId(20160101);
+
+        expect(date.id(d)).toEqual(20160101);
+    });
+
     it('.parse', function () {
         expect(isNaN(date.parse('...'))).toEqual(false);
         expect(isNaN(date.parse(new Date('...')))).toEqual(false);

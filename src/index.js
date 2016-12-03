@@ -61,6 +61,21 @@ exports.id = function (date) {
 
 
 /**
+ * 将 id 解析为日期对象
+ * @param id
+ * @returns {Date}
+ */
+exports.fromId = function (id) {
+    var str = id + '';
+    var year = number.parseInt(str.slice(0, 4));
+    var month = number.parseInt(str.slice(4, 6)) - 1;
+    var date = number.parseInt(str.slice(-2));
+
+    return new Date(year, month, date);
+};
+
+
+/**
  * 包装 Date 实例
  * @param date
  * @returns {Date}
