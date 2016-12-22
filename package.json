@@ -1,6 +1,6 @@
 {
   "name": "blear.utils.date",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "date utils",
   "scripts": {
     "live": "browser-sync start --config bs-config.js",

@@ -577,3 +577,26 @@ exports.iso = function (date) {
         padStartWithZero(date.getUTCSeconds()) + '.' +
         padStartWithZero(date.getUTCMilliseconds(), 3) + 'Z';
 };
+
+
+/**
+ * 开始时间（当天 0:0:0:0）
+ * @param {Date} d1
+ * @returns {Date}
+ */
+var start = exports.start = function (d1) {
+    var d2 = parse(d1);
+    return new Date(d2.getFullYear(), d2.getMonth(), d2.getDate(), 0, 0, 0, 0);
+};
+
+
+/**
+ * 结束时间（当天 23:59:59:999）
+ * @param {Date} d1
+ * @returns {Date}
+ */
+exports.end = function (d1) {
+    var d2 = start(d1);
+    d2.setDate(d2.getDate() + 1);
+    return new Date(d2.getTime() - 1);
+};

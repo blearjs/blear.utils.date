@@ -104,4 +104,30 @@ describe('index.js', function () {
     it('.iso', function () {
         expect(date.iso()).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}.\d{3}Z$/);
     });
+
+    it('.start', function () {
+        var d1 = new Date();
+        var d2 = date.start(d1);
+
+        expect(d2.getFullYear()).toEqual(d1.getFullYear());
+        expect(d2.getMonth()).toEqual(d1.getMonth());
+        expect(d2.getDate()).toEqual(d1.getDate());
+        expect(d2.getHours()).toEqual(0);
+        expect(d2.getMinutes()).toEqual(0);
+        expect(d2.getSeconds()).toEqual(0);
+        expect(d2.getMilliseconds()).toEqual(0);
+    });
+
+    it('.end', function () {
+        var d1 = new Date();
+        var d2 = date.end(d1);
+
+        expect(d2.getFullYear()).toEqual(d1.getFullYear());
+        expect(d2.getMonth()).toEqual(d1.getMonth());
+        expect(d2.getDate()).toEqual(d1.getDate());
+        expect(d2.getHours()).toEqual(23);
+        expect(d2.getMinutes()).toEqual(59);
+        expect(d2.getSeconds()).toEqual(59);
+        expect(d2.getMilliseconds()).toEqual(999);
+    });
 });
