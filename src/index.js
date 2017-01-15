@@ -48,7 +48,7 @@ exports.now = function () {
  * @returns {number}
  */
 exports.id = function (date) {
-    var d = parse(date);
+    var d = parse.apply(null, arguments);
     var y = d.getFullYear();
     var m = d.getMonth() + 1;
     var a = d.getDate();
@@ -563,11 +563,11 @@ exports.from = function (d1, d2) {
 
 /**
  * 输出 ISO date string
- * @param [date] {Date} 日期
+ * @param [date] {...Date} 日期
  * @returns {string}
  */
 exports.iso = function (date) {
-    date = parse(date);
+    date = parse.apply(null, arguments);
 
     return padStartWithZero(date.getUTCFullYear(), 4) + '-' +
         padStartWithZero(date.getUTCMonth() + 1) + '-' +
@@ -581,22 +581,22 @@ exports.iso = function (date) {
 
 /**
  * 开始时间（当天 0:0:0:0）
- * @param {Date} d1
+ * @param {...Date} d1
  * @returns {Date}
  */
 var start = exports.start = function (d1) {
-    var d2 = parse(d1);
+    var d2 = parse.apply(null, arguments);
     return new Date(d2.getFullYear(), d2.getMonth(), d2.getDate(), 0, 0, 0, 0);
 };
 
 
 /**
  * 结束时间（当天 23:59:59:999）
- * @param {Date} d1
+ * @param {...Date} d1
  * @returns {Date}
  */
 exports.end = function (d1) {
-    var d2 = start(d1);
+    var d2 = start.apply(null, arguments);
     d2.setDate(d2.getDate() + 1);
     return new Date(d2.getTime() - 1);
 };
