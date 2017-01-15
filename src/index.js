@@ -44,6 +44,7 @@ exports.now = function () {
 
 /**
  * 当前日期 ID
+ * @param date {... Number|String|Date}
  * @returns {number}
  */
 exports.id = function (date) {
@@ -91,7 +92,7 @@ var wrapDate = function (date) {
 
 /**
  * 解析 date
- * @param date {Date|String|Number} date 信息
+ * @param date {...Date|String|Number} date 信息
  * @returns {Date}
  */
 var parse = exports.parse = function (date) {

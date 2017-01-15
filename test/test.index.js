@@ -18,6 +18,7 @@ describe('index.js', function () {
         var d = new Date(2016, 0, 1);
 
         expect(date.id(d)).toEqual(20160101);
+        expect(date.id(2016, 0, 1)).toEqual(20160101);
     });
 
     it('.fromId', function () {
