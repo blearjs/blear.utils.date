@@ -91,7 +91,7 @@ var wrapDate = function (date) {
 
 /**
  * 解析 date
- * @param date {Date|String|Number|Array} date 信息
+ * @param date {Date|String|Number} date 信息
  * @returns {Date}
  */
 var parse = exports.parse = function (date) {
@@ -99,45 +99,44 @@ var parse = exports.parse = function (date) {
         return wrapDate(date);
     }
 
-    if (typeis.Array(date)) {
-        switch (date.length) {
-            case 0:
-                return new Date();
+    var args = access.args(arguments);
 
-            case 1:
-                // new Date(2016) => 1970
-                // new Date(2016, 0) => 2016
-                return wrapDate(new Date(date[0], 0));
+    switch (args.length) {
+        case 0:
+            return new Date();
 
-            case 2:
-                return wrapDate(new Date(date[0], date[1]));
+        case 1:
+            // new Date(2016) => 1970
+            return wrapDate(new Date(args[0]));
 
-            case 3:
-                return wrapDate(new Date(date[0], date[1], date[2]));
+        case 2:
+            return wrapDate(new Date(args[0], args[1]));
 
-            case 4:
-                return wrapDate(new Date(date[0], date[1], date[2], date[3]));
+        case 3:
+            return wrapDate(new Date(args[0], args[1], args[2]));
 
-            case 5:
-                return wrapDate(new Date(date[0], date[1], date[2], date[3], date[4]));
+        case 4:
+            return wrapDate(new Date(args[0], args[1], args[2], args[3]));
 
-            case 6:
-                return wrapDate(new Date(date[0], date[1], date[2], date[3], date[4], date[5]));
+        case 5:
+            return wrapDate(new Date(args[0], args[1], args[2], args[3], args[4]));
 
-            default:
-                return wrapDate(new Date(date[0], date[1], date[2], date[3], date[4], date[5], date[6]));
-        }
+        case 6:
+            return wrapDate(new Date(args[0], args[1], args[2], args[3], args[4], args[5]));
+
+        default:
+            return wrapDate(new Date(args[0], args[1], args[2], args[3], args[4], args[5], args[6]));
     }
-
-    try {
-        date = new Date(date);
-    } catch (err) {
-        // @fuckie
-        /* istanbul ignore next */
-        date = new Date();
-    }
-
-    return wrapDate(date);
+    //
+    // try {
+    //     date = new Date(date);
+    // } catch (err) {
+    //     // @fuckie
+    //     /* istanbul ignore next */
+    //     date = new Date();
+    // }
+    //
+    // return wrapDate(date);
 };
 
 

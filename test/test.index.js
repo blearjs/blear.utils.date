@@ -29,14 +29,14 @@ describe('index.js', function () {
     it('.parse', function () {
         expect(isNaN(date.parse('...'))).toEqual(false);
         expect(isNaN(date.parse(new Date('...')))).toEqual(false);
-        expect(date.parse([]).getFullYear()).toEqual(new Date().getFullYear());
-        expect(date.parse([2016]).getFullYear()).toEqual(2016);
-        expect(date.parse([2016, 0]).getMonth()).toEqual(0);
-        expect(date.parse([2016, 0, 1]).getDate()).toEqual(1);
-        expect(date.parse([2016, 0, 1, 1]).getHours()).toEqual(1);
-        expect(date.parse([2016, 0, 1, 1, 1]).getMinutes()).toEqual(1);
-        expect(date.parse([2016, 0, 1, 1, 1, 1]).getSeconds()).toEqual(1);
-        expect(date.parse([2016, 0, 1, 1, 1, 1, 1]).getMilliseconds()).toEqual(1);
+        expect(date.parse().getFullYear()).toEqual(new Date().getFullYear());
+        expect(date.parse(2016).getFullYear()).toEqual(1970);
+        expect(date.parse(2016, 0).getMonth()).toEqual(0);
+        expect(date.parse(2016, 0, 1).getDate()).toEqual(1);
+        expect(date.parse(2016, 0, 1, 1).getHours()).toEqual(1);
+        expect(date.parse(2016, 0, 1, 1, 1).getMinutes()).toEqual(1);
+        expect(date.parse(2016, 0, 1, 1, 1, 1).getSeconds()).toEqual(1);
+        expect(date.parse(2016, 0, 1, 1, 1, 1, 1).getMilliseconds()).toEqual(1);
     });
 
     it('.format', function () {
