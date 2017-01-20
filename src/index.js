@@ -102,6 +102,11 @@ var parse = exports.parse = function (date) {
 
     var args = access.args(arguments);
 
+    // 如果直接传数组也是可以的
+    if (typeis.Array(args[0])) {
+        args = args[0];
+    }
+
     switch (args.length) {
         case 0:
             return new Date();
