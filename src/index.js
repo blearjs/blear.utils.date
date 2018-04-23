@@ -7,7 +7,6 @@
 
 'use strict';
 
-var object = require('blear.utils.object');
 var array = require('blear.utils.array');
 var access = require('blear.utils.access');
 var number = require('blear.utils.number');
